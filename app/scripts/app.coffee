@@ -28,6 +28,9 @@ angular
         controller: 'AboutCtrl'
       .otherwise
         redirectTo: '/'
-  .run ($firebaseSimpleLogin) ->
+  .run ($firebaseSimpleLogin, $rootScope) ->
     console.log "app run"
+    dataRef = new Firebase("https://2id26.firebaseio.com")
+    $rootScope.loginObj = $firebaseSimpleLogin(dataRef)
+    console.log $rootScope.loginObj
 
