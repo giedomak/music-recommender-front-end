@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'firebase'
   ])
   .config ($routeProvider) ->
     $routeProvider
@@ -27,4 +28,6 @@ angular
         controller: 'AboutCtrl'
       .otherwise
         redirectTo: '/'
+  .run ($firebaseSimpleLogin) ->
+    console.log "app run"
 
