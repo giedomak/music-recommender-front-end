@@ -8,10 +8,15 @@
  # Controller of the 2Id26App
 ###
 angular.module('2Id26App')
-  .controller 'MainCtrl', ($rootScope, $scope) ->
+  .controller 'MainCtrl', (Spotify, $routeParams, $rootScope, $scope) ->
     $rootScope.curTab = "home"
     $scope.awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'
       'Karma'
     ]
+    if $routeParams
+      console.log $routeParams.params
+      
+    $scope.login = () ->
+      Spotify.login()
