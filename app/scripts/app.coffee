@@ -28,9 +28,24 @@ angular
         controller: 'AboutCtrl'
       .otherwise
         redirectTo: '/'
-  .run ($firebaseSimpleLogin, $rootScope) ->
+  .run ($http, $firebase, $firebaseSimpleLogin, $rootScope) ->
     console.log "app run"
+    
+    $rootScope.profilePic = null
+    
     dataRef = new Firebase("https://2id26.firebaseio.com")
     $rootScope.loginObj = $firebaseSimpleLogin(dataRef)
-    console.log $rootScope.loginObj
+    
+    ref = new Firebase("https://2id26.firebaseio.com/users")
+    users = new $firebase(ref)
+    
+    $rootScope.$on "$firebaseSimpleLogin:login",  (e, user) ->
+      console.log "User " + user.id + ", " + user.displayName + " successfully logged in!"
+      console.log user
+    
+      users.$update user.id, user
+      
+      $http.get "https://graph.facebook.com/"+user.id+"/picture?redirect=false"
+      .success (data) ->
+        $rootScope.profilePic = data.data.url
 

@@ -11,7 +11,10 @@
   <p class="lead">
     Register with our system
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Register!</a></p>
+  <p><a class="btn btn-lg btn-success" ng-href="#" ng-hide="loginObj.user" ng-click="loginObj.$login('facebook')">Register!</a>
+  <div ng-show="loginObj.user">
+    <img ng-src="{{profilePic}}" height="30px"> {{loginObj.user.displayName}} <span  class="glyphicon glyphicon-ok"></span>
+  </div>
 </div>
 
 <div class="jumbotron">
@@ -25,7 +28,7 @@
 <div class="jumbotron">
   <h1>Step 3</h1>
   <p class="lead">
-    Get recommendations
+    Get music recommendations
   </p>
 </div>
   
