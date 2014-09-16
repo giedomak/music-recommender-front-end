@@ -15,8 +15,6 @@ angular.module('2Id26App')
       'AngularJS'
       'Karma'
     ]
-    if $routeParams
-      console.log $routeParams.params
       
     $scope.login = () ->
       Spotify.login()

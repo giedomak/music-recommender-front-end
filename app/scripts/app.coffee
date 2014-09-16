@@ -17,8 +17,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'firebase',
-    'spotify',
-    'ngPostMessage'
+    'spotify'
   ])
   .config ($routeProvider, $httpProvider) ->
     $routeProvider
@@ -28,9 +27,6 @@ angular
       .when '/about',
         templateUrl: 'views/about.html'
         controller: 'AboutCtrl'
-      .when '/:params',
-        templateUrl: 'views/main.html'
-        controller: 'MainCtrl'
       .otherwise
         redirectTo: '/'
   .config (SpotifyProvider) ->
@@ -40,22 +36,30 @@ angular
   .run ($window, $http, $firebase, $firebaseSimpleLogin, $rootScope) ->
     console.log "app run"
     
-    $rootScope.$root.$on '$messageIncoming', (event, data) ->
-      console.log angular.fromJson(data)
-    
     $rootScope.profilePic = null
+    
+    $rootScope.spotify = null
+    $rootScope.deezer = null
     
     dataRef = new Firebase("https://2id26.firebaseio.com")
     $rootScope.loginObj = $firebaseSimpleLogin(dataRef)
     
     ref = new Firebase("https://2id26.firebaseio.com/users")
-    users = new $firebase(ref)
+    users = new $firebase(ref).$asArray()
+    
+    $window.onmessage = (e) ->
+#      Token from spotify
+      console.log "Spotify event binnen"
+      $rootScope.spotify = e.data
+      rec = users.$getRecord($rootScope.loginObj.user.id)
+      rec.spotify = e.data
+      users.$save(rec)
     
     $rootScope.$on "$firebaseSimpleLogin:login",  (e, user) ->
       console.log "User " + user.id + ", " + user.displayName + " successfully logged in!"
       console.log user
     
-      users.$update user.id, user
+      users.$inst().$update user.id, user
       
       $http.get "https://graph.facebook.com/"+user.id+"/picture?redirect=false"
       .success (data) ->
