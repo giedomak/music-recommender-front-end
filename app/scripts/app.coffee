@@ -38,8 +38,7 @@ angular
     
     $rootScope.profilePic = null
     
-    $rootScope.spotify = null
-    $rootScope.deezer = null
+    $rootScope.user = null
     
     dataRef = new Firebase("https://2id26.firebaseio.com")
     $rootScope.loginObj = $firebaseSimpleLogin(dataRef)
@@ -50,14 +49,21 @@ angular
     $window.onmessage = (e) ->
 #      Token from spotify
       console.log "Spotify event binnen"
-      $rootScope.spotify = e.data
-      rec = users.$getRecord($rootScope.loginObj.user.id)
-      rec.spotify = e.data
-      users.$save(rec)
+      $rootScope.user.spotifytoken = e.data
+      $http.get "https://api.spotify.com/v1/me", headers: {'Authorization': 'Bearer ' + e.data}
+        .success (e) ->
+          console.log e
+          $rootScope.user.spotify = e
     
     $rootScope.$on "$firebaseSimpleLogin:login",  (e, user) ->
       console.log "User " + user.id + ", " + user.displayName + " successfully logged in!"
       console.log user
+      
+      ref = new Firebase("https://2id26.firebaseio.com/users/" + user.id)
+      obj = $firebase(ref).$asObject()
+
+      obj.$bindTo($rootScope, "user").then () ->
+        console.log $rootScope.user
     
       users.$inst().$update user.id, user
       
