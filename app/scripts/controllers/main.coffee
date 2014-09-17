@@ -16,5 +16,5 @@ angular.module('2Id26App')
       'Karma'
     ]
       
-    $scope.login = () ->
+    $scope.spotifylogin = () ->
       Spotify.login()

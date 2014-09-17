@@ -13,7 +13,7 @@
   </p>
   <p><a class="btn btn-lg btn-success" ng-href="#" ng-hide="loginObj.user" ng-click="loginObj.$login('facebook')">Register!</a>
   <div ng-show="loginObj.user">
-    <img ng-src="{{profilePic}}" height="30px"> {{loginObj.user.displayName}} <span  class="glyphicon glyphicon-ok"></span>
+    <img ng-src="{{profilePic}}" height="30"> {{loginObj.user.displayName}} <span  class="glyphicon glyphicon-ok"></span>
   </div>
 </div>
 
@@ -22,7 +22,12 @@
   <p class="lead">
     Add your music services 
   </p>
-  <p><a class="btn btn-lg btn-success" href="#" ng-click="login()">Spotify</a></p><p><a class="btn btn-lg btn-success" ng-href="#">Deezer</a></p>
+  <a ng-hide="user.spotify" class="btn btn-lg btn-success" href="#" ng-click="spotifylogin()">Spotify</a>
+  <div ng-show="user.spotify">
+    <img src="../images/spotify.png" alt="Spotify" height="30"> {{user.spotify.id}} <span  class="glyphicon glyphicon-ok"></span>
+  </div>
+  <br>
+  <a class="btn btn-lg btn-success" ng-href="#">Deezer</a>
 </div>
 
 <div class="jumbotron">
@@ -31,7 +36,7 @@
     Get music recommendations
   </p>
 </div>
-  
+
 <!--</div>
 
 <div class="row marketing">
