@@ -22,11 +22,11 @@
   <p class="lead">
     Add your music services 
   </p>
-  <a ng-hide="user.spotify" class="btn btn-lg btn-success" href="#" ng-click="spotifylogin()">Spotify</a>
-  <div ng-show="user.spotify">
+  <a ng-hide="user.spotifytoken" class="btn btn-lg btn-success" href="#" ng-click="spotifylogin()">Spotify</a>
+  <div ng-show="user.spotifytoken">
     <img src="../images/spotify.png" alt="Spotify" height="30"> {{user.spotify.id}} <span  class="glyphicon glyphicon-ok"></span>
   </div>
-  <br>
+  <br><br>
   <a class="btn btn-lg btn-success" ng-href="#">Deezer</a>
 </div>
 

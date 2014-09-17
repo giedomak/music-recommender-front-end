@@ -34,8 +34,6 @@ angular
     SpotifyProvider.setRedirectUri('http://nasischijf.biersysteem.nl/callback.html')
     SpotifyProvider.setScope('user-read-private playlist-read-private playlist-modify-private playlist-modify-public')
   .run ($window, $http, $firebase, $firebaseSimpleLogin, $rootScope) ->
-    console.log "app run"
-    
     $rootScope.profilePic = null
     
     $rootScope.user = null
@@ -50,10 +48,18 @@ angular
 #      Token from spotify
       console.log "Spotify event binnen"
       $rootScope.user.spotifytoken = e.data
-      $http.get "https://api.spotify.com/v1/me", headers: {'Authorization': 'Bearer ' + e.data}
+      getSpotify e.data
+          
+    getSpotify = (token) ->
+      console.log "getSpotify " + token
+      $http.get "https://api.spotify.com/v1/me", headers: {'Authorization': 'Bearer ' + token}
         .success (e) ->
-          console.log e
+          console.log "Token correct"
           $rootScope.user.spotify = e
+        .error (e) ->
+          console.log "Token invalid"
+          $rootScope.user.spotifytoken = null
+          
     
     $rootScope.$on "$firebaseSimpleLogin:login",  (e, user) ->
       console.log "User " + user.id + ", " + user.displayName + " successfully logged in!"
@@ -64,6 +70,7 @@ angular
 
       obj.$bindTo($rootScope, "user").then () ->
         console.log $rootScope.user
+        getSpotify $rootScope.user.spotifytoken
     
       users.$inst().$update user.id, user
       
