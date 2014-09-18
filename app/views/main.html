@@ -20,9 +20,9 @@
 <div class="jumbotron">
   <h1>Step 2</h1>
   <p class="lead">
-    Add your music services 
+    Add your music services
   </p>
-  <a ng-hide="user.spotifytoken" class="btn btn-lg btn-success" href="#" ng-click="spotifylogin()">Spotify</a>
+  <a ng-hide="user.spotifytoken" ng-disabled="!loginObj.user.id" class="btn btn-lg btn-success" href="#" ng-click="spotifylogin()">Spotify</a>
   <div ng-show="user.spotifytoken">
     <img src="../images/spotify.png" alt="Spotify" height="30"> {{user.spotify.id}} <span  class="glyphicon glyphicon-ok"></span>
   </div>
