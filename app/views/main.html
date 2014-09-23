@@ -29,7 +29,6 @@
     <h3>User library</h3>
     <span ng-repeat="song in user.spotifyUserLibrary.items">{{song.track.artists[0].name}} - {{song.track.name}}<br></span>
     <h3>Playlists</h3>
-    {{user.spotifyPlaylists}}
     <span ng-repeat="playlist in user.spotifyPlaylists.items">{{playlist.name}}<br></span>
   </div>
   <!--  <br><br>
