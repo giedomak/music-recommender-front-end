@@ -32,8 +32,8 @@ angular
   .config (SpotifyProvider) ->
     SpotifyProvider.setClientId('4fe50f88a6314016a043c32a1d3bb422')
     SpotifyProvider.setRedirectUri('http://nasischijf.biersysteem.nl/callback.html')
-    SpotifyProvider.setScope('user-read-private playlist-read-private playlist-modify-private playlist-modify-public')
-  .run ($window, $http, $firebase, $firebaseSimpleLogin, $rootScope) ->
+    SpotifyProvider.setScope('user-library-read user-read-private playlist-read-private playlist-modify-private playlist-modify-public')
+  .run (Spotify, $window, $http, $firebase, $firebaseSimpleLogin, $rootScope) ->
     $rootScope.profilePic = null
     
     $rootScope.user = null
@@ -45,13 +45,14 @@ angular
     users = new $firebase(ref).$asArray()
     
     $window.onmessage = (e) ->
-#      Token from spotify
+      # Token from spotify
       console.log "Spotify event binnen"
       $rootScope.user.spotifytoken = e.data
       getSpotify e.data
           
     getSpotify = (token) ->
       console.log "getSpotify " + token
+      Spotify.setAuthToken token
       $http.get "https://api.spotify.com/v1/me", headers: {'Authorization': 'Bearer ' + token}
         .success (e) ->
           console.log "Token correct"
@@ -59,6 +60,16 @@ angular
         .error (e) ->
           console.log "Token invalid"
           $rootScope.user.spotifytoken = null
+      Spotify.getSavedUserTracks({limit: 50})
+        .then (data) ->
+          console.log "UserLibrary"
+          console.log data
+          $rootScope.user.spotifyUserLibrary = data
+      Spotify.getUserPlaylists $rootScope.user.spotify.id, {limit: 50}
+        .then (data) ->
+          console.log "Playlists"
+          console.log data
+          $rootScope.user.spotifyPlaylists = data
           
     
     $rootScope.$on "$firebaseSimpleLogin:login",  (e, user) ->

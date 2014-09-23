@@ -13,7 +13,8 @@
   </p>
   <p><a class="btn btn-lg btn-success" ng-href="#" ng-hide="loginObj.user" ng-click="loginObj.$login('facebook')">Register!</a>
   <div ng-show="loginObj.user">
-    <img ng-src="{{profilePic}}" height="30"> {{loginObj.user.displayName}} <span  class="glyphicon glyphicon-ok"></span>
+    <img ng-src="{{profilePic}}" height="30"> {{loginObj.user.displayName}} <span  class="glyphicon glyphicon-ok"></span><br>
+    <a href="#" ng-click="loginObj.$logout()">Logout</a>
   </div>
 </div>
 
@@ -22,12 +23,17 @@
   <p class="lead">
     Add your music services
   </p>
-  <a ng-hide="user.spotifytoken" ng-disabled="!loginObj.user.id" class="btn btn-lg btn-success" href="#" ng-click="spotifylogin()">Spotify</a>
-  <div ng-show="user.spotifytoken">
-    <img src="../images/spotify.png" alt="Spotify" height="30"> {{user.spotify.id}} <span  class="glyphicon glyphicon-ok"></span>
+  <a ng-hide="user.spotifytoken && loginObj.user.id" ng-disabled="!loginObj.user.id || user.spotifytoken" class="btn btn-lg btn-success" href="#" ng-click="spotifylogin()">Spotify</a>
+  <div ng-show="user.spotifytoken && loginObj.user.id">
+    <img src="images/spotify.png" alt="Spotify" height="30"> {{user.spotify.id}} <span  class="glyphicon glyphicon-ok"></span>
+    <h3>User library</h3>
+    <span ng-repeat="song in user.spotifyUserLibrary.items">{{song.track.artists[0].name}} - {{song.track.name}}<br></span>
+    <h3>Playlists</h3>
+    {{user.spotifyPlaylists}}
+    <span ng-repeat="playlist in user.spotifyPlaylists.items">{{playlist.name}}<br></span>
   </div>
-  <br><br>
-  <a class="btn btn-lg btn-success" ng-href="#">Deezer</a>
+  <!--  <br><br>
+    <a class="btn btn-lg btn-success" ng-href="#">Deezer</a>-->
 </div>
 
 <div class="jumbotron">
