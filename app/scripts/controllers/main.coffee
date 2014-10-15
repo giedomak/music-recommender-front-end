@@ -17,7 +17,7 @@ angular.module('2Id26App')
       Spotify.login()
 
     $scope.recommend = () ->
-      $http.get "http://localhost:8080/spotify?token="+$rootScope.user.spotifytoken
+      $http.get "http://178.62.207.179:8080/spotify?token="+$rootScope.user.spotifytoken
       .success (data) ->
         console.log data
         $rootScope.data = data.lyricIds
