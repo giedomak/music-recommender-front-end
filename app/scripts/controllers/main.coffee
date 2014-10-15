@@ -8,13 +8,13 @@
  # Controller of the 2Id26App
 ###
 angular.module('2Id26App')
-  .controller 'MainCtrl', (Spotify, $routeParams, $rootScope, $scope) ->
+  .controller 'MainCtrl', ($http, Spotify, $routeParams, $rootScope, $scope) ->
     $rootScope.curTab = "home"
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
-      
+
     $scope.spotifylogin = () ->
       Spotify.login()
+
+    $scope.recommend = () ->
+      $http.get "http://178.62.207.179:8080/spotify?token="+$rootScope.user.spotifytoken
+      .success (data) ->
+        $scope.recommendations = data.lyric_ids

@@ -38,8 +38,9 @@
 <div class="jumbotron">
   <h1>Step 3</h1>
   <p class="lead">
-    Get music recommendations
+    <a class="btn btn-lg btn-success" ng-href="#" ng-disabled="!loginObj.user.id || !user.spotifytoken" ng-click="recommend()">Get music recommendations!</a>
   </p>
+  {{recommendations}}
 </div>
 
 <!--</div>
