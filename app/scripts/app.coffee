@@ -24,6 +24,9 @@ angular
       .when '/',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl'
+      .when '/songs',
+        templateUrl: 'views/songs.html'
+        controller: 'SongsCtrl'
       .when '/about',
         templateUrl: 'views/about.html'
         controller: 'AboutCtrl'
