@@ -33,7 +33,7 @@ angular.module('2Id26App')
 
 
   #    $http.get "http://178.62.207.179:8080/songs"
-    $http.get "http://localhost:8080/song?id="+$scope.id
+    $http.get "http://178.62.207.179:8080/song?id="+$scope.id
     .success (data) ->
       console.log "Song received"
       console.log data
@@ -41,7 +41,7 @@ angular.module('2Id26App')
 
       #    $http.get "http://178.62.207.179:8080/songs"
       if $scope.song.lyric_id
-        $http.get "http://localhost:8080/lyric?id="+$scope.song.lyric_id
+        $http.get "http://178.62.207.179:8080/lyric?id="+$scope.song.lyric_id
         .success (data) ->
           console.log "Lyric received"
           console.log data

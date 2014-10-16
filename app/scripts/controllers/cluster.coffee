@@ -15,11 +15,11 @@ angular.module('2Id26App')
 
 
   #    $http.get "http://178.62.207.179:8080/songs"
-    $http.get "http://localhost:8080/cluster?id="+$scope.id
+    $http.get "http://178.62.207.179:8080/cluster?id="+$scope.id
     .success (data) ->
       console.log data
       $scope.cluster = data
-      $http.get "http://localhost:8080/songs"
+      $http.get "http://178.62.207.179:8080/songs"
       .success (data) ->
         console.log data
         tmp = data.filter (x) -> $scope.id in x.cluster_ids
