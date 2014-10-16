@@ -27,6 +27,9 @@ angular
       .when '/songs',
         templateUrl: 'views/songs.html'
         controller: 'SongsCtrl'
+      .when '/song/:id',
+        templateUrl: 'views/song.html'
+        controller: 'SongCtrl'
       .when '/about',
         templateUrl: 'views/about.html'
         controller: 'AboutCtrl'
@@ -95,6 +98,7 @@ angular
     client_id = "4fe50f88a6314016a043c32a1d3bb422"
     redirect_uri = "http:%2F%2Fnasischijf.biersysteem.nl/2id26"
 #    $http.get "https://accounts.spotify.com/authorize?client_id=" + client_id + "&response_type=token&redirect_uri=" + redirect_uri
+
         
     
 
