@@ -9,7 +9,7 @@
 ###
 angular.module('2Id26App')
   .controller 'SongCtrl', ($routeParams, $http, $rootScope, $scope) ->
-    $rootScope.curTab = ""
+    $rootScope.curTab = "songs"
     $scope.loading = true
     $scope.id = parseInt($routeParams.id)
 
@@ -35,13 +35,20 @@ angular.module('2Id26App')
   #    $http.get "http://178.62.207.179:8080/songs"
     $http.get "http://localhost:8080/song?id="+$scope.id
     .success (data) ->
+      console.log "Song received"
       console.log data
       $scope.song = data
 
       #    $http.get "http://178.62.207.179:8080/songs"
-      $http.get "http://localhost:8080/lyric?id="+$scope.song.lyric_id
-      .success (data) ->
-        console.log data
-        $scope.lyric = data
+      if $scope.song.lyric_id
+        $http.get "http://localhost:8080/lyric?id="+$scope.song.lyric_id
+        .success (data) ->
+          console.log "Lyric received"
+          console.log data
+          $scope.lyric = data
+          $scope.loading = false
+      else
         $scope.loading = false
+
+
 

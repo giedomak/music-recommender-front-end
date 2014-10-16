@@ -8,15 +8,15 @@
  # Controller of the 2Id26App
 ###
 angular.module('2Id26App')
-  .controller 'SongsCtrl', ($http, $rootScope, $scope) ->
+  .controller 'ClustersCtrl', ($http, $rootScope, $scope) ->
     $scope.loading = true
-    $rootScope.curTab = "songs"
+    $rootScope.curTab = "clusters"
 
   #    $http.get "http://178.62.207.179:8080/songs"
-    $http.get "http://localhost:8080/songs"
+    $http.get "http://localhost:8080/clusters"
     .success (data) ->
       console.log data
-      $scope.songs = shuffle(data)
+      $scope.clusters = shuffle(data)
       $scope.loading = false
 
     shuffle = (a) ->

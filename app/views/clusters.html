@@ -7,15 +7,15 @@
   <div class="rect5"></div>
 </div>
   <div ng-hide="loading">
-<h4>Songs</h4>
-    This page only shows 50 songs, but the search box below searches the whole database.
+<h4>Clusters</h4>
+    This page only shows 50 clusters, but the search box below searches the whole database.
     <form class="form-inline">
       <input ng-model="query" type="text"
              placeholder="Search" autofocus>
     </form><br>
 <ul>
-  <li ng-repeat="song in songs | filter:query | limitTo:50" class="animate">
-    <a ng-href="#/song/{{song.id}}">{{song.artist}} - {{song.title}}</a>
+  <li ng-repeat="cluster in clusters | filter:query | limitTo:50" class="animate">
+    <a ng-href="#/clusters/{{cluster.id}}">{{cluster.lingoLabel}}</a>
   </li>
 </ul>
   </div>

@@ -30,6 +30,12 @@ angular
       .when '/song/:id',
         templateUrl: 'views/song.html'
         controller: 'SongCtrl'
+      .when '/clusters',
+        templateUrl: 'views/clusters.html'
+        controller: 'ClustersCtrl'
+      .when '/clusters/:id',
+        templateUrl: 'views/cluster.html'
+        controller: 'ClusterCtrl'
       .when '/about',
         templateUrl: 'views/about.html'
         controller: 'AboutCtrl'

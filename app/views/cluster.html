@@ -1,0 +1,17 @@
+
+<div class="spinner" ng-show="loading">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+</div>
+<div ng-hide="loading">
+<h4>{{cluster.lingoLabel}}</h4>
+  The songs included in this cluster are shown below<br><br>
+<ul>
+  <li ng-repeat="song in songs">
+    <a ng-href="#/song/{{song.id}}">{{song.artist}} - {{song.title}}</a>
+  </li>
+  </ul>
+</div>
