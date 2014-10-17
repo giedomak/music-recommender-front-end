@@ -8,7 +8,7 @@
  # Controller of the 2Id26App
 ###
 angular.module('2Id26App')
-  .controller 'MainCtrl', ($http, Spotify, $routeParams, $rootScope, $scope) ->
+  .controller 'MainCtrl', ($sce, $http, Spotify, $routeParams, $rootScope, $scope) ->
     console.log "main init"
     $rootScope.curTab = "home"
 
@@ -28,6 +28,7 @@ angular.module('2Id26App')
         data.songIds.unique()
         console.log data
         $rootScope.songs3 = []
+        $rootScope.spotify_urls = "https://embed.spotify.com/?uri=spotify:trackset:Music%20Recommendations:"
 
         for songid in data.songIds
           id = songid.toString()
@@ -39,6 +40,9 @@ angular.module('2Id26App')
             tmp = $rootScope.songs3.filter (x) -> x.id is data.id
             if tmp.length is 0 and data.id >= 0
               $rootScope.songs3.push(data)
+              if data.spotifyId
+                $rootScope.spotify_urls += ","+data.spotifyId
+                $rootScope.spotify_url = $sce.trustAsResourceUrl($rootScope.spotify_urls+"&theme=white")
 
         $rootScope.loading3 = false
 

@@ -8,7 +8,7 @@
  # Controller of the 2Id26App
 ###
 angular.module('2Id26App')
-  .controller 'ClusterCtrl', ($routeParams, $http, $rootScope, $scope) ->
+  .controller 'ClusterCtrl', ($sce, $routeParams, $http, $rootScope, $scope) ->
     $rootScope.curTab = "clusters"
     $scope.loading = true
     $scope.id = parseInt($routeParams.id)
@@ -24,5 +24,8 @@ angular.module('2Id26App')
         console.log data
         tmp = data.filter (x) -> $scope.id in x.cluster_ids
         $scope.songs = tmp
+        ids = ""
+        ids += ","+song.spotifyId for song in $scope.songs
+        $scope.url = $sce.trustAsResourceUrl("https://embed.spotify.com/?uri=spotify:trackset:Cluster%20Songs:"+ids+"&theme=white")
         $scope.loading = false
 

@@ -8,7 +8,7 @@
  # Controller of the 2Id26App
 ###
 angular.module('2Id26App')
-  .controller 'SongCtrl', ($routeParams, $http, $rootScope, $scope) ->
+  .controller 'SongCtrl', ($sce, $routeParams, $http, $rootScope, $scope) ->
     $rootScope.curTab = "songs"
     $scope.loading = true
     $scope.id = parseInt($routeParams.id)
@@ -38,6 +38,7 @@ angular.module('2Id26App')
       console.log "Song received"
       console.log data
       $scope.song = data
+      $scope.url = $sce.trustAsResourceUrl("https://embed.spotify.com/?uri=spotify:track:"+data.spotifyId+"&theme=white")
 
       #    $http.get $rootScope.api+"/songs"
       if $scope.song.lyric_id
