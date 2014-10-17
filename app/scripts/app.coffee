@@ -47,8 +47,8 @@ angular
     SpotifyProvider.setScope('user-library-read user-read-private playlist-read-private playlist-modify-private playlist-modify-public')
   .run (Spotify, $window, $http, $firebase, $firebaseSimpleLogin, $rootScope) ->
     $rootScope.profilePic = null
-#    $rootScope.api = "http://178.62.207.179:8080"
-    $rootScope.api = "http://localhost:8080"
+    $rootScope.api = "http://178.62.207.179:8080"
+#    $rootScope.api = "http://localhost:8080"
     $rootScope.user = null
     
     dataRef = new Firebase("https://2id26.firebaseio.com")
