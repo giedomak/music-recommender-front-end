@@ -12,8 +12,8 @@ angular.module('2Id26App')
     $scope.loading = true
     $rootScope.curTab = "clusters"
 
-  #    $http.get "http://178.62.207.179:8080/songs"
-    $http.get "http://178.62.207.179:8080/clusters"
+  #    $http.get $rootScope.api+"/songs"
+    $http.get $rootScope.api+"/clusters"
     .success (data) ->
       console.log data
       $scope.clusters = shuffle(data)

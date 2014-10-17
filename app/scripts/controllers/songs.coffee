@@ -12,8 +12,8 @@ angular.module('2Id26App')
     $scope.loading = true
     $rootScope.curTab = "songs"
 
-  #    $http.get "http://178.62.207.179:8080/songs"
-    $http.get "http://178.62.207.179:8080/songs"
+  #    $http.get $rootScope.api+"/songs"
+    $http.get $rootScope.api+"/songs"
     .success (data) ->
       console.log data
       $scope.songs = shuffle(data)

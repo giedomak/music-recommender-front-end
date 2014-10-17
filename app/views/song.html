@@ -12,6 +12,7 @@
 <b>Source:</b> {{lyric.source}} <br>
 <b>Plutchik:</b> {{plutchik(lyric.plutchik)}} <br>
 <b>Polarity:</b> {{polarity(lyric.polarity)}} <br>
+<b>Cluster<span ng-show="clusters.length > 1">s</span>:</b> <span ng-repeat="cluster in clusters"><span ng-show="$index > 0">, </span><a ng-href="#/clusters/{{cluster.id}}">{{cluster.lingoLabel}}</a></span><br>
 <br>
 {{lyric.text}}
 

@@ -8,7 +8,7 @@
 </div>
   <div ng-hide="loading">
 <h4>Songs</h4>
-    This page only shows 50 songs, but the search box below searches the whole database.
+    This page only shows 50 songs, but the search box below searches the whole database with {{songs.length}} songs.
     <form class="form-inline">
       <input ng-model="query" type="text"
              placeholder="Search" autofocus>

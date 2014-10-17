@@ -37,14 +37,23 @@
 
 <div class="jumbotron">
   <h1>Step 3</h1>
-  <p class="lead">
-    <a class="btn btn-lg btn-success" ng-href="#" ng-disabled="!loginObj.user.id || !user.spotifytoken" ng-click="recommend()">Get music recommendations!</a>
-  </p>
+  <p class="lead" ng-hide="clicked">
+    <a class="btn btn-lg btn-success" ng-disabled="!loginObj.user.id || !user.spotifytoken" ng-click="recommend()">Get music recommendations!</a>
+  </p><br>
+  <div class="spinner" ng-show="loading3">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+  </div>
+  <div ng-hide="loading3">
   <ul>
-    <li ng-repeat="recommendation in data">
-      {{recommendation}}
+    <li class="animate" ng-repeat="song in songs3 track by $index">
+      <a ng-href="#/song/{{song.id}}">{{song.artist}} - {{song.title}}</a>
     </li>
   </ul>
+  </div>
 </div>
 
 <!--</div>

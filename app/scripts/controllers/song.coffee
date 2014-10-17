@@ -32,16 +32,16 @@ angular.module('2Id26App')
         when 1 then return "Positive"
 
 
-  #    $http.get "http://178.62.207.179:8080/songs"
-    $http.get "http://178.62.207.179:8080/song?id="+$scope.id
+  #    $http.get $rootScope.api+"/songs"
+    $http.get $rootScope.api+"/song?id="+$scope.id
     .success (data) ->
       console.log "Song received"
       console.log data
       $scope.song = data
 
-      #    $http.get "http://178.62.207.179:8080/songs"
+      #    $http.get $rootScope.api+"/songs"
       if $scope.song.lyric_id
-        $http.get "http://178.62.207.179:8080/lyric?id="+$scope.song.lyric_id
+        $http.get $rootScope.api+"/lyric?id="+$scope.song.lyric_id
         .success (data) ->
           console.log "Lyric received"
           console.log data
@@ -49,6 +49,14 @@ angular.module('2Id26App')
           $scope.loading = false
       else
         $scope.loading = false
+
+      $scope.clusters = []
+      for clusterid in $scope.song.cluster_ids
+        $http.get $rootScope.api+"/cluster?id="+clusterid
+        .success (data) ->
+          console.log "Cluster received"
+          console.log data
+          $scope.clusters.push(data)
 
 
 
