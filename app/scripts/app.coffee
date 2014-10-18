@@ -47,7 +47,7 @@ angular
     SpotifyProvider.setRedirectUri('http://nasischijf.biersysteem.nl/callback.html')
     SpotifyProvider.setScope('user-library-read user-read-private playlist-read-private')
     # Init provider configuration
-    $deezerProvider.setChannelUrl("http://vladimir.sh/playground/deezer_light/channel.html")
+    $deezerProvider.setChannelUrl("http://bestmusicfor.me/data/channel.html")
     $deezerProvider.setAppId("145691")
   .run (Spotify, $window, $http, $firebase, $firebaseSimpleLogin, $rootScope) ->
     $rootScope.profilePic = null
