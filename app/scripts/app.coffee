@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'firebase',
-    'spotify'
+    'spotify',
+    'gianarb.deezer'
   ])
   .config ($routeProvider, $httpProvider) ->
     $routeProvider
@@ -41,10 +42,13 @@ angular
         controller: 'AboutCtrl'
       .otherwise
         redirectTo: '/'
-  .config (SpotifyProvider) ->
+  .config (SpotifyProvider, $deezerProvider) ->
     SpotifyProvider.setClientId('4fe50f88a6314016a043c32a1d3bb422')
     SpotifyProvider.setRedirectUri('http://nasischijf.biersysteem.nl/callback.html')
-    SpotifyProvider.setScope('user-library-read user-read-private playlist-read-private playlist-modify-private playlist-modify-public')
+    SpotifyProvider.setScope('user-library-read user-read-private playlist-read-private')
+    # Init provider configuration
+    $deezerProvider.setChannelUrl("http://vladimir.sh/playground/deezer_light/channel.html")
+    $deezerProvider.setAppId("145691")
   .run (Spotify, $window, $http, $firebase, $firebaseSimpleLogin, $rootScope) ->
     $rootScope.profilePic = null
     $rootScope.api = "http://178.62.207.179:8080"

@@ -8,12 +8,24 @@
  # Controller of the 2Id26App
 ###
 angular.module('2Id26App')
-  .controller 'MainCtrl', ($sce, $http, Spotify, $routeParams, $rootScope, $scope) ->
+  .controller 'MainCtrl', (deezer, $sce, $http, Spotify, $routeParams, $rootScope, $scope) ->
     console.log "main init"
     $rootScope.curTab = "home"
 
     $scope.spotifylogin = () ->
       Spotify.login()
+
+    $scope.deezerlogin = () ->
+      #Check if I'm already logged
+      unless $rootScope.user_data
+        deezer.login (response) ->
+          console.log response
+          $rootScope.user_data =
+            access_token: response.authResponse.accessToken
+            user_id: response.userID
+
+          return
+
 
     $rootScope.recommend = () ->
       $rootScope.clicked = true
