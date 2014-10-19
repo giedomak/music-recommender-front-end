@@ -11,6 +11,10 @@ angular.module('2Id26App')
   .controller 'SongsCtrl', ($http, $rootScope, $scope) ->
     $scope.loading = true
     $rootScope.curTab = "songs"
+    $scope.songs = ["henk"]
+
+    $scope.currentPage = 1
+    $scope.itemsPerPage = 20
 
   #    $http.get $rootScope.api+"/songs"
     $http.get $rootScope.api+"/songs"
@@ -27,3 +31,9 @@ angular.module('2Id26App')
         a[j] = a[i]
         a[i] = t
       a
+
+  .filter 'pagination', ->
+    (items, scope) ->
+      start = (scope.currentPage-1) * scope.itemsPerPage
+      end = (scope.currentPage-1) * scope.itemsPerPage + scope.itemsPerPage
+      items[start...end]

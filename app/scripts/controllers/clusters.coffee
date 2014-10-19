@@ -12,6 +12,10 @@ angular.module('2Id26App')
     $scope.loading = true
     $rootScope.curTab = "clusters"
 
+
+    $scope.currentPage = 1
+    $scope.itemsPerPage = 20
+
   #    $http.get $rootScope.api+"/songs"
     $http.get $rootScope.api+"/clusters"
     .success (data) ->

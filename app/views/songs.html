@@ -8,14 +8,16 @@
 </div>
   <div ng-hide="loading">
 <h4>Songs</h4>
-    This page only shows 50 songs, but the search box below searches the whole database with {{songs.length}} songs.
+    The Music Recommender currently contains {{songs.length}} songs.<br><br>
     <form class="form-inline">
       <input ng-model="query" type="text"
              placeholder="Search" autofocus>
     </form><br>
 <ul>
-  <li ng-repeat="song in songs | filter:query | limitTo:50" class="animate">
+  <li ng-repeat="song in songs| filter:query | pagination:this" class="faderChats">
     <a ng-href="#/song/{{song.id}}">{{song.artist}} - {{song.title}}</a>
   </li>
 </ul>
+    <pagination items-per-page="itemsPerPage" max-size="10" boundary-links="true" total-items="(songs | filter:query).length" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+    <br>
   </div>

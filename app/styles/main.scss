@@ -172,3 +172,12 @@ body {
   top: -50px;
   height: 0px;
 }
+
+
+.faderChats.ng-enter {
+  animation: fadeInLeft 0.5s;
+}
+
+.faderChats.ng-leave {
+  animation: fadeOutRight 0.5s;
+}

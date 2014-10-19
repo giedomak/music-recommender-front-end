@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'firebase',
     'spotify',
-    'gianarb.deezer'
+    'gianarb.deezer',
+    'ui.bootstrap'
   ])
   .config ($routeProvider, $httpProvider) ->
     $routeProvider
