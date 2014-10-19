@@ -20,9 +20,9 @@ angular.module('2Id26App')
       unless $rootScope.user_data
         deezer.login (response) ->
           console.log response
-          $rootScope.user_data =
-            access_token: response.authResponse.accessToken
-            user_id: response.userID
+          $rootScope.user.deezer =
+            token: response.authResponse.accessToken
+            id: response.userID
 
           return
 
