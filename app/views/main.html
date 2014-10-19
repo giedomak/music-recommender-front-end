@@ -51,9 +51,12 @@
 
 <div class="jumbotron">
   <h1>Step 3</h1>
+  <p class="lead">
+    Get music recommendations
+  </p>
   <p class="lead" ng-hide="clicked"><br>
-    <a class="btn btn-lg btn-success" ng-disabled="!loginObj.user.id || !user.spotifytoken" ng-click="recommend()">Get music recommendations!</a>
-  </p><br>
+    <a class="btn btn-lg btn-success" ng-disabled="!loginObj.user.id || !user.spotifytoken" ng-click="recommend()">GO!</a><br>
+  </p>
   <div class="spinner" ng-show="loading3">
     <div class="rect1"></div>
     <div class="rect2"></div>
